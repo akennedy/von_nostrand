@@ -1,0 +1,41 @@
+<!doctype html>
+<html ng-app>
+<!-- <html ng-app="components"> -->
+<head>
+  <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
+  <link rel="stylesheet" href="css/bootstrap-responsive.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
+  <script src="js/angular-1.0.1.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/spin.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/app.js" type="text/javascript" charset="utf-8"></script>
+  <!-- // <script src="js/components.js" type="text/javascript" charset="utf-8"></script> -->
+</head>
+<body style="margin-top:50px;">
+<!-- <pane></pane> -->
+<div class="navabar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container-fluid">
+      <a class="brand" href="/"><h2>Von Nostrand</h2></a>
+    </div>
+  </div>
+</div>
+<div class="container-fluid" ng-controller="WhereAreYouCtrl">
+  <h1>{{foo}}</h1>
+  <input type="text" placeholder="Enter Country Name" ng-model="mylocation.country" ng-change="change()"></input>
+  <input id="country" type="hidden" value="{{mylocation.country}}"></input>
+  <select ng-model="mylocation.state" ng-options="state for state in states" ng-change="stateChanged()">
+    <option value="">--- Choose State ---</option>
+  </select>
+  <select ng-model="mylocation.city" ng-options="city for city in cities" ng-change="cityChanged()">
+    <option value="">--- Choose City ---</option>
+  </select>
+
+  <br />
+  <h2>Results</h2>
+  {{mylocation.country}}
+  {{mylocation.state}}
+  {{mylocation.city}}
+</div>
+</body>
+</html>
