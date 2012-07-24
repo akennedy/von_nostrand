@@ -1,3 +1,47 @@
+var myApp = angular.module('myApp', []);
+
+myApp.directive('autocomplete', function($parse) {
+    return function(scope, element, attrs) {
+        var setSelection = $parse(attrs.selection).assign;
+            scope.$watch(attrs.autocomplete, function(value) {
+                element.autocomplete({
+                    source: value,
+                    select: function(event, ui) {
+                        setSelection(scope, ui.item.code);
+                        scope.$apply();
+                    }
+                });
+            });
+        };
+});
+
+function getIndications() {
+  // Get Indications
+  console.log('Get Indications');
+}
+
+function JuiceCtrl($scope) {
+  $scope.medication = { code: 1, name: 'Foo' } 
+
+  $scope.full_medication;
+  
+  $scope.medicationUrl = [{label: 'Foo', value: 'Foo', code: 1},{label: 'Bar', value: 'Bar', code: 2}];
+  $scope.forms = [];
+  $scope.strengths = [];
+  $scope.$watch('medication.code', function() {
+    if($scope.medication.code && $scope.medication.code > 0){
+      // ajax ->
+      //$scope.strengths = ["foo"] ->
+      //  $scope.forms = ["foo"];
+      getIndications();
+      console.log('Change Drop Downs');
+    }
+    console.log($scope.medication.code);
+  }); 
+  //$scope.medicationUrl = "https://demopharmacist:Testph789@staging.eirenerx.com/autocompletes/medications.json";
+
+}
+
 function WhereAreYouCtrl($scope) {
   $scope.foo = "Where are you! ";
   $scope.mylocation = { country: 'USA', state: 'South Carolina', city: 'Charleston'}
